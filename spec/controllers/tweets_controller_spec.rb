@@ -10,17 +10,15 @@ describe TweetsController do
     end
   end
 
-  describe "GET 'create'" do
-    it "returns http success" do
-      get 'create'
-      expect(response).should be_successful
-    end
-  end
-
   describe "GET 'show'" do
     it "returns http success" do
       get 'show'
       expect(response).to be_successful
+    end
+
+    it "assigns @tweet to a valid Tweet" do 
+      get :show, tweet: {user: "joetwitter", message: "Wow! Fake twitter is so great!"}
+      expect(assigns(:tweet)).to be_valid
     end
   end
 
@@ -30,25 +28,26 @@ describe TweetsController do
       expect(response).to be_successful
     end
   end
-end
 
-describe "POST 'create'" do
-  
-  it "redirects to a show template" do 
-    post :create, tweet: {user: "joetwitter", message: "Wow! Fake twitter is so great!"}
-    expect(response).to redirect_to tweet_show_path(assigns(:tweet).id)
-  end
-
-  it "assigns @tweet to a valid Tweet" do 
-    post :create, tweet: {user: "joetwitter", message: "Wow! Fake twitter is so great!"}
-    expect(assigns(:tweet)).to be_valid
-  end
-  
-  context "when invalid" do
+  describe "POST 'create'" do
     
-    it "renders the :new template" do
-      post :create, tweet: {author: "Stephanie Meyer"}
-      expect(response).to render_template :new
+    it "redirects to a show template" do 
+      post :create, tweet: {user: "joetwitter", message: "Wow! Fake twitter is so great!"}
+      expect(response).to redirect_to tweet_show_path(assigns(:tweet).id)
     end
-  end
+
+    it "assigns @tweet to a valid Tweet" do 
+      post :create, tweet: {user: "joetwitter", message: "Wow! Fake twitter is so great!"}
+      expect(assigns(:tweet)).to be_valid
+    end
+    
+    context "when invalid" do
+      
+      it "renders the :new template" do
+        post :create, tweet: {author: "Stephanie Meyer"}
+        expect(response).to render_template :new
+      end
+    end
+
+end
 end

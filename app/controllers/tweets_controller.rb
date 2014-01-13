@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :new, :create]
+  before_action :set_tweet, only: [ :show ]
 
 
   def new
@@ -20,7 +20,7 @@ class TweetsController < ApplicationController
   end
 
   def index
-    @tweets = Tweets.order(created_at desc)
+    @tweets = Tweet.order("created_at" "desc")
   end
 
   private
