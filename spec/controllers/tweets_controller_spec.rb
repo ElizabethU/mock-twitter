@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe TweetsController do
-  let!(:tweet) { create(:tweet) }
+  let(:tweet) { create(:tweet) }
 
   describe "GET 'new'" do
     it "returns http success" do
@@ -12,12 +12,12 @@ describe TweetsController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
+      get 'show', id: tweet.id
       expect(response).to be_successful
     end
 
     it "assigns @tweet to a valid Tweet" do 
-      get :show, tweet: {user: "joetwitter", message: "Wow! Fake twitter is so great!"}
+      get :show, id: tweet.id
       expect(assigns(:tweet)).to be_valid
     end
   end
@@ -33,7 +33,7 @@ describe TweetsController do
     
     it "redirects to a show template" do 
       post :create, tweet: {user: "joetwitter", message: "Wow! Fake twitter is so great!"}
-      expect(response).to redirect_to tweet_show_path(assigns(:tweet).id)
+      expect(response).to redirect_to tweet_path(assigns(:tweet).id)
     end
 
     it "assigns @tweet to a valid Tweet" do 

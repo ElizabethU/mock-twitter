@@ -9,9 +9,9 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     if @tweet.save
-      redirect_to tweet_show_path(@tweet)
+      redirect_to tweet_path(@tweet)
     else
-      render action: new
+      render :new
     end
   end
 
