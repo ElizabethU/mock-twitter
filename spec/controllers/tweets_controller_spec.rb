@@ -1,33 +1,33 @@
 require 'spec_helper'
 
 describe TweetsController do
-  let!(:tweet) { Tweet.create(user: "joetwitter", message: "Wow! Fake twitter is so great!")} 
+  let!(:tweet) { create(:tweet) }
 
   describe "GET 'new'" do
     it "returns http success" do
       get 'new'
-      response.should be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET 'create'" do
     it "returns http success" do
       get 'create'
-      response.should be_success
+      expect(response).should be_successful
     end
   end
 
   describe "GET 'show'" do
     it "returns http success" do
       get 'show'
-      response.should be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
-      response.should be_success
+      expect(response).to be_successful
     end
   end
 end
