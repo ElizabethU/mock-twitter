@@ -1,2 +1,11 @@
-<h1>Tweets#new</h1>
-<p>Find me in app/views/tweets/new.html.erb</p>
+<h1>Say something!</h1>
+
+<%= form_for @tweet do |f| %>
+  <%= f.label :user, "Your name:" %><br>
+  <%= f.text_field :user %><br>
+
+  <%= f.label :message, "Your message to the world:" %><br>
+  <%= f.text_field :message %><br>
+
+  <%= f.submit "Submit" %>
+<%end%>
