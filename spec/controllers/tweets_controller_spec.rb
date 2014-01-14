@@ -27,6 +27,11 @@ describe TweetsController do
       get 'index'
       expect(response).to be_successful
     end
+  
+    it 'renders the index template' do
+      get :index
+      expect(response).to render_template('index')
+    end
   end
 
   describe "POST 'create'" do
